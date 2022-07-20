@@ -8,6 +8,8 @@
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
+	if (tree == NULL)
+		return (0);
 	return (binary_helper(tree, INT_MIN, INT_MAX));
 }
 
@@ -15,7 +17,9 @@ int binary_tree_is_bst(const binary_tree_t *tree)
  * binary_helper - checks if the given tree is a BST
  * and its values are >= min and <= max
  * @tree: pointer to the root node of the tree to check
- * Returns: true
+ * @min: min
+ * @max: max
+ * Return: true
  */
 int binary_helper(const binary_tree_t *tree, int min, int max)
 {
@@ -23,6 +27,6 @@ int binary_helper(const binary_tree_t *tree, int min, int max)
 		return (1);
 	if (tree->n < min || tree->n > max)
 		return (0);
-	return (binary_helper(tree->left, min, tree->n-1) &&
-			binary_helper(tree->right, tree->n+1, max));
+	return (binary_helper(tree->left, min, tree->n - 1) &&
+			binary_helper(tree->right, tree->n + 1, max));
 }
